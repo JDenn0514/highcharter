@@ -271,9 +271,11 @@ hc <- lca_data_dvs %>%
     ),
     useHtml = TRUE
   ) %>%
+  # update tooltip
   hc_tooltip(
+    # specify the width of the border (in px)
     borderWidth = 2,
-    distance = 16,
+    distance = 18,
     pointFormat = "{series.name}: <b>{point.y}</b>"
   ) %>%
   # customize legend
@@ -282,19 +284,18 @@ hc <- lca_data_dvs %>%
     verticalAlign = "top",
     align = "center"
   ) %>%
-  # adjust the size
+  # adjust the size of the chart
   hc_size(width = 1080, height = 400) %>%
   # This takes the argument for inverted = TRUE
   hc_chart(inverted = TRUE) %>%
   # update the colors
   hc_colors(
-    substr(adl_palettes$categorical[1:4], 0, 7) %>% labelled::remove_attributes("class")
+    as.character(adl_palettes$categorical[1:4])
   )
 
 
 hc
 
-saveWidget(hc, "p1.html", selfcontained = F, libdir = "lib")
-
+saveWidget(hc, "non_contained.html", selfcontained = FALSE, libdir = "external_resources")
 
 
